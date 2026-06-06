@@ -261,8 +261,11 @@ function gradeExam(){
     : statAnswers;
 
     let score = 0;
+    let wrongQuestions = [];
 
     for(let i=1;i<=30;i++){
+
+        let userAnswer = null;
 
         if(
             (i>=16 && i<=22) ||
@@ -273,12 +276,8 @@ function gradeExam(){
             const input =
             document.getElementById(`q${i}`);
 
-            if(
-                input.value !== "" &&
-                Number(input.value)
-                === answers[i-1]
-            ){
-                score++;
+            if(input.value !== ""){
+                userAnswer = Number(input.value);
             }
 
         }else{
@@ -288,20 +287,34 @@ function gradeExam(){
             `input[name="q${i}"]:checked`
             );
 
-            if(!checked) continue;
-
-            if(
-                Number(checked.value)
-                === answers[i-1]
-            ){
-                score++;
+            if(checked){
+                userAnswer = Number(checked.value);
             }
+        }
+
+        if(userAnswer === answers[i-1]){
+            score++;
+        }else{
+            wrongQuestions.push(i);
         }
     }
 
+    let resultText =
+    `점수 : ${score} / 30<br><br>`;
+
+    if(wrongQuestions.length === 0){
+
+        resultText +=
+        "🎉 전 문항 정답!";
+
+    }else{
+
+        resultText +=
+        `❌ 틀린 번호 : ${wrongQuestions.join(", ")}`;
+    }
+
     document.getElementById("result")
-    .innerHTML =
-    `점수 : ${score} / 30`;
+    .innerHTML = resultText;
 }
 
 </script>
