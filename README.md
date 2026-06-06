@@ -1,5 +1,3 @@
-# studyandyes.github.io
-<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -200,9 +198,9 @@
      * id: 문제번호, correct: 정답번호, score: 배점, comment: 해설내용
      */
     const examData = [
-        { id: 1, correct: "1", score: 20, comment: "1번 문항 해설: 문제의 핵심 키워드를 파악하면 1번이 정답입니다." },
-        { id: 2, correct: "3", score: 20, comment: "2번 문항 해설: 본문의 세 번째 줄 내용을 통해 3번임을 유추할 수 있습니다." },
-        { id: 3, correct: "4", score: 20, comment: "3번 문항 해설: 수식을 대입하여 계산하면 결과값은 4번이 나옵니다." },
+        { id: 1, correct: "1", score: 2},
+        { id: 2, correct: "3", score: 2},
+        { id: 3, correct: "4", score: 3},
         { id: 4, correct: "2", score: 20, comment: "4번 문항 해설: 보기 2번은 인과관계가 반대로 설명되어 틀린 보기입니다." },
         { id: 5, correct: "5", score: 20, comment: "5번 문항 해설: 종합적인 흐름상 결론으로 가장 적절한 것은 5번입니다." }
     ];
