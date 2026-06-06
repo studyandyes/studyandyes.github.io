@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YES 모의고사 </title>
+    <title> YES 모의고사 </title>
     <style>
         /* 기본 스타일 리셋 및 폰트 설정 */
         * {
