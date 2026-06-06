@@ -149,11 +149,14 @@ OMR 답안 마킹
 <div id="questions"></div>
 
 <button class="submit-btn" onclick="gradeExam()">
-📋 답안지 제출 및 채점하기
+ 답안지 제출 및 채점하기
 </button>
 
+<button class="submit-btn" onclick="showAnswers()">
+ 정답 공개
+</button>
 <div id="result" class="result"></div>
-
+<div id="answerSheet" class="result"></div>
 </div>
 
 <script>
@@ -163,9 +166,9 @@ OMR 답안 마킹
 ========================== */
 
 const calcAnswers = [
-1,2,3,4,5,
-1,2,3,4,5,
-1,2,3,4,5,
+2,3,5,5,5,
+5,1,3,2,1,
+4,2,4,1,4,
 120,35,8,14,9,17,21,
 1,2,3,4,5,1,
 27,128
@@ -176,9 +179,9 @@ const calcAnswers = [
 ========================== */
 
 const statAnswers = [
-5,4,3,2,1,
-5,4,3,2,1,
-5,4,3,2,1,
+2,3,5,5,5,
+5,1,3,2,1,
+4,2,4,1,4,
 15,24,12,7,9,18,20,
 5,4,3,2,1,5,
 32,256
@@ -310,13 +313,36 @@ function gradeExam(){
     }else{
 
         resultText +=
-        `❌ 틀린 번호 : ${wrongQuestions.join(", ")}`;
+        ` 틀린 번호 : ${wrongQuestions.join(", ")}`;
     }
 
     document.getElementById("result")
     .innerHTML = resultText;
 }
+function showAnswers(){
 
+    const subject =
+    document.querySelector(
+    'input[name="subject"]:checked'
+    ).value;
+
+    const answers =
+    subject === "calc"
+    ? calcAnswers
+    : statAnswers;
+
+    let html = "<h3>정답표</h3>";
+
+    for(let i=1;i<=30;i++){
+
+        html += `
+        ${i}번 : ${answers[i-1]}<br>
+        `;
+    }
+
+    document.getElementById("answerSheet")
+    .innerHTML = html;
+}
 </script>
 
 </body>
