@@ -321,6 +321,16 @@ function gradeExam(){
 }
 function showAnswers(){
 
+    const answerSheet =
+    document.getElementById("answerSheet");
+
+    // 이미 열려 있으면 닫기
+    if(answerSheet.innerHTML !== ""){
+
+        answerSheet.innerHTML = "";
+        return;
+    }
+
     const subject =
     document.querySelector(
     'input[name="subject"]:checked'
@@ -340,8 +350,7 @@ function showAnswers(){
         `;
     }
 
-    document.getElementById("answerSheet")
-    .innerHTML = html;
+    answerSheet.innerHTML = html;
 }
 </script>
 
