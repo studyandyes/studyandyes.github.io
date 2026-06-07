@@ -14,9 +14,7 @@
             font-family: 'Malgun Gothic', sans-serif;
             margin: 0;
             padding: 0;
-            /* 따뜻하고 편안한 연한 웜 그레이 메인 배경 */
             background-color: #fafaf8;
-            /* 더 부드러운 텍스트 색상 */
             color: #1f2937; 
         }
         
