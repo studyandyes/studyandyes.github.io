@@ -134,6 +134,21 @@
             cursor: pointer;
         }
 
+        .submit-btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
         /* 등급컷 화면 */
         table {
             width: 100%;
@@ -153,6 +168,7 @@
 </head>
 <body>
 
+    <!-- 상단 바 -->
     <nav>
         <div onclick="showSection('main')">홈</div>
         <div onclick="showSection('download')">문제 다운로드</div>
@@ -160,26 +176,25 @@
         <div onclick="showSection('cutoffs')">등급컷확인</div>
     </nav>
 
+    <!-- 1. 메인 화면 -->
     <div id="main" class="content-section active">
         <div class="main-image-container">
             <img src="IMG_6273.jpg" alt="메인 페이지 이미지">
         </div>
     </div>
 
+    <!-- 2. 문제 다운로드 화면 -->
     <div id="download" class="content-section">
         <h2>자료실</h2>
         <ul class="file-list">
             <li>
-                <span>2026학년도 모의고사 국어 문제지.pdf</span>
-                <button class="download-btn">다운로드</button>
-            </li>
-            <li>
-                <span>2026학년도 모의고사 수학 문제지.pdf</span>
+                <span>제1회 YES모의고사.pdf</span>
                 <button class="download-btn">다운로드</button>
             </li>
         </ul>
     </div>
 
+    <!-- 3. 정답 확인 화면 -->
     <div id="answers" class="content-section">
         <h2>정답 입력</h2>
         <div class="subject-tabs">
@@ -189,9 +204,16 @@
         </div>
 
         <div id="subject-content" class="answer-grid">
-            </div>
+            <!-- 자바스크립트로 문제 칸이 생성되는 곳 -->
+        </div>
+
+        <!-- 채점 버튼 -->
+        <div class="submit-btn-container">
+            <button class="submit-btn" onclick="gradeAnswers()">채점하기</button>
+        </div>
     </div>
 
+    <!-- 4. 등급컷 확인 화면 -->
     <div id="cutoffs" class="content-section">
         <h2>예상 등급컷</h2>
         <table>
@@ -204,14 +226,43 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1등급</td><td>92</td><td>88</td><td>90</td></tr>
-                <tr><td>2등급</td><td>85</td><td>80</td><td>81</td></tr>
-                <tr><td>3등급</td><td>77</td><td>71</td><td>73</td></tr>
+                <!-- 
+                =======================================================
+                [등급컷 설정 공간]
+                아래 <td> </td> 태그 사이에 원하는 점수를 직접 적어넣으세요.
+                예시: <td>92</td>
+                현재는 빈칸이 나오도록 비워두었습니다.
+                =======================================================
+                -->
+                <tr><td>1등급</td><td></td><td></td><td></td></tr>
+                <tr><td>2등급</td><td></td><td></td><td></td></tr>
+                <tr><td>3등급</td><td></td><td></td><td></td></tr>
             </tbody>
         </table>
     </div>
 
     <script>
+        // =======================================================
+        // [정답 설정 공간]
+        // 채점을 위해 여기에 각 과목의 실제 정답을 미리 입력해두세요.
+        // 객관식은 "1"~"5" 사이의 숫자, 주관식은 단답형 숫자를 적으시면 됩니다.
+        // 예시로 몇 개만 적혀 있으며, 형식에 맞춰 콤마(,)로 구분하여 추가하세요.
+        // =======================================================
+        const correctAnswers = {
+            korean: {
+                1: "1", 2: "3", 3: "5", // 이런 식으로 45번까지 이어 적어주세요
+            },
+            calc: {
+                1: "2", 2: "4", 16: "15", 30: "250", // 이런 식으로 30번까지 이어 적어주세요
+            },
+            stat: {
+                1: "3", 2: "1", 16: "12", 30: "120", // 이런 식으로 30번까지 이어 적어주세요
+            }
+        };
+
+
+        let currentSubject = 'korean'; // 현재 띄워진 과목을 추적
+
         // 탭 전환 기능
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
@@ -226,6 +277,8 @@
 
         // 과목별 답안지 생성 기능
         function showSubject(subject) {
+            currentSubject = subject; // 현재 과목 업데이트
+
             // 서브 탭 색상 변경
             document.querySelectorAll('.subject-tabs button').forEach(btn => btn.classList.remove('active-sub'));
             if(subject === 'korean') document.getElementById('tab-korean').classList.add('active-sub');
@@ -235,19 +288,21 @@
             const container = document.getElementById('subject-content');
             let html = '';
 
+            let prefix = subject === 'korean' ? 'kor' : subject;
+
             if (subject === 'korean') {
                 // 국어 45문제 (전부 객관식)
                 for (let i = 1; i <= 45; i++) {
-                    html += createObjectiveQuestion(i, 'kor');
+                    html += createObjectiveQuestion(i, prefix);
                 }
             } else {
                 // 미적분, 확률과 통계 30문제 (16~22, 29, 30 주관식)
                 const subjectiveNums = [16, 17, 18, 19, 20, 21, 22, 29, 30];
                 for (let i = 1; i <= 30; i++) {
                     if (subjectiveNums.includes(i)) {
-                        html += createSubjectiveQuestion(i, subject);
+                        html += createSubjectiveQuestion(i, prefix);
                     } else {
-                        html += createObjectiveQuestion(i, subject);
+                        html += createObjectiveQuestion(i, prefix);
                     }
                 }
             }
@@ -276,6 +331,44 @@
                     <input type="text" placeholder="정답 입력" name="${prefix}_q${num}">
                 </div>
             `;
+        }
+
+        // 채점 기능
+        function gradeAnswers() {
+            let qCount = currentSubject === 'korean' ? 45 : 30;
+            let prefix = currentSubject === 'korean' ? 'kor' : currentSubject;
+            let correctCount = 0;
+            let answeredCount = 0;
+
+            for (let i = 1; i <= qCount; i++) {
+                let userAnswer = "";
+                // 주관식인지 객관식인지 판별
+                let isSubjective = (currentSubject !== 'korean') && [16, 17, 18, 19, 20, 21, 22, 29, 30].includes(i);
+                
+                if (isSubjective) {
+                    let input = document.querySelector(`input[name="${prefix}_q${i}"]`);
+                    if (input && input.value.trim() !== "") {
+                        userAnswer = input.value.trim();
+                        answeredCount++;
+                    }
+                } else {
+                    let checked = document.querySelector(`input[name="${prefix}_q${i}"]:checked`);
+                    if (checked) {
+                        userAnswer = checked.value;
+                        answeredCount++;
+                    }
+                }
+
+                // 설정된 정답과 비교
+                let realAnswer = correctAnswers[currentSubject][i];
+                if (realAnswer && userAnswer === String(realAnswer)) {
+                    correctCount++;
+                }
+            }
+
+            // 결과 안내창 띄우기
+            let subjectName = currentSubject === 'korean' ? '국어' : (currentSubject === 'calc' ? '미적분' : '확률과 통계');
+            alert(`[${subjectName} 채점 결과]\n- 푼 문제 수: ${answeredCount} / ${qCount}\n- 맞힌 문제 수: ${correctCount}개`);
         }
     </script>
 </body>
