@@ -164,8 +164,8 @@
             color: white;
         }
     </style>
-</head>
-<body>
+     </head>
+     <body>
 
     <nav>
         <div onclick="showSection('main')">홈</div>
