@@ -1,358 +1,282 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YES 모의고사</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Portal</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --border-color: #ddd;
+            --bg-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        
+        /* 상단 네비게이션 바 */
+        nav {
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav div {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        nav div:hover {
+            text-decoration: underline;
+        }
+        
+        /* 메인 컨텐츠 영역 */
+        .content-section {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .active {
+            display: block;
+        }
 
-<style>
+        /* 메인 페이지 이미지 */
+        .main-image-container {
+            text-align: center;
+        }
+        .main-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
-body{
-    margin:0;
-    padding:20px;
-    background:#f3f4f6;
-    font-family:Arial,sans-serif;
-}
+        /* 다운로드 화면 */
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .file-list li {
+            padding: 15px;
+            background: var(--bg-color);
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+        }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    background:white;
-    border-radius:20px;
-    padding:30px;
-}
+        /* 정답 확인 화면 */
+        .subject-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .subject-tabs button {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--primary-color);
+            background-color: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .subject-tabs button.active-sub {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .question-item {
+            background: var(--bg-color);
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .question-item input[type="text"] {
+            width: 80%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .options {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .options label {
+            cursor: pointer;
+        }
 
-.logo{
-    text-align:center;
-    font-size:50px;
-    font-weight:bold;
-    color:#2f64d6;
-    margin-bottom:20px;
-}
-
-.title{
-    text-align:center;
-    font-size:42px;
-    font-weight:bold;
-    color:#2d3748;
-}
-
-.download-box{
-    background:#eef2f7;
-    padding:25px;
-    border-radius:15px;
-    margin:30px 0;
-    text-align:center;
-}
-
-.download-btn{
-    display:inline-block;
-    background:#5b9be6;
-    color:white;
-    text-decoration:none;
-    padding:15px 40px;
-    border-radius:10px;
-    font-size:20px;
-    margin-top:15px;
-}
-
-.subject-select{
-    text-align:center;
-    font-size:22px;
-    margin-bottom:30px;
-}
-
-.section-title{
-    font-size:32px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.question{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:15px 0;
-    border-bottom:1px solid #ddd;
-}
-
-.question-number{
-    width:60px;
-    font-weight:bold;
-    font-size:20px;
-}
-
-.subjective{
-    width:120px;
-    padding:8px;
-    font-size:18px;
-}
-
-.submit-btn{
-    width:100%;
-    margin-top:30px;
-    padding:18px;
-    background:#57c26a;
-    border:none;
-    color:white;
-    font-size:24px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.result{
-    text-align:center;
-    font-size:30px;
-    font-weight:bold;
-    margin-top:20px;
-}
-
-</style>
+        /* 등급컷 화면 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <nav>
+        <div onclick="showSection('main')">홈</div>
+        <div onclick="showSection('download')">문제 다운로드</div>
+        <div onclick="showSection('answers')">정답확인</div>
+        <div onclick="showSection('cutoffs')">등급컷확인</div>
+    </nav>
 
-<div class="logo">Study And Yes</div>
-
-<div class="title">YES 모의고사</div>
-
-<div class="download-box">
-    <p>YES 모의고사 다운로드 버튼</p>
-
-    <a href="exam.pdf" class="download-btn">
-        📄 시험지 다운로드(.pdf)
-    </a>
-</div>
-
-<div class="subject-select">
-
-<label>
-<input type="radio" name="subject" value="calc" checked>
-미적분
-</label>
-
-&nbsp;&nbsp;&nbsp;
-
-<label>
-<input type="radio" name="subject" value="stat">
-확률과 통계
-</label>
-
-</div>
-
-<div class="section-title">
-OMR 답안 마킹
-</div>
-
-<div id="questions"></div>
-
-<button class="submit-btn" onclick="gradeExam()">
- 답안지 제출 및 채점하기
-</button>
-
-<button class="submit-btn" onclick="showAnswers()">
- 정답 공개
-</button>
-<div id="result" class="result"></div>
-<div id="answerSheet" class="result"></div>
-</div>
-
-<script>
-
-/* ==========================
-   미적분 정답
-========================== */
-
-const calcAnswers = [
-2,3,5,5,5,
-5,1,3,2,1,
-4,2,4,1,4,
-120,35,8,14,9,17,21,
-1,2,3,4,5,1,
-27,128
-];
-
-/* ==========================
-   확통 정답
-========================== */
-
-const statAnswers = [
-2,3,5,5,5,
-5,1,3,2,1,
-4,2,4,1,4,
-15,24,12,7,9,18,20,
-5,4,3,2,1,5,
-32,256
-];
-
-/* ==========================
-   문항 생성
-========================== */
-
-const questions =
-document.getElementById("questions");
-
-for(let i=1;i<=30;i++){
-
-    let html="";
-
-    if(
-        (i>=16 && i<=22) ||
-        i===29 ||
-        i===30
-    ){
-
-        html=`
-        <div class="question">
-
-            <div class="question-number">
-            ${i}번.
-            </div>
-
-            <input
-            type="number"
-            id="q${i}"
-            class="subjective"
-            placeholder="정답 입력">
-
+    <div id="main" class="content-section active">
+        <div class="main-image-container">
+            <img src="IMG_6273.jpg" alt="메인 페이지 이미지">
         </div>
-        `;
-    }
+    </div>
 
-    else{
+    <div id="download" class="content-section">
+        <h2>자료실</h2>
+        <ul class="file-list">
+            <li>
+                <span>2026학년도 모의고사 국어 문제지.pdf</span>
+                <button class="download-btn">다운로드</button>
+            </li>
+            <li>
+                <span>2026학년도 모의고사 수학 문제지.pdf</span>
+                <button class="download-btn">다운로드</button>
+            </li>
+        </ul>
+    </div>
 
-        html=`
-        <div class="question">
-
-            <div class="question-number">
-            ${i}번.
-            </div>
-
-            <label><input type="radio" name="q${i}" value="1"> 1</label>
-
-            <label><input type="radio" name="q${i}" value="2"> 2</label>
-
-            <label><input type="radio" name="q${i}" value="3"> 3</label>
-
-            <label><input type="radio" name="q${i}" value="4"> 4</label>
-
-            <label><input type="radio" name="q${i}" value="5"> 5</label>
-
+    <div id="answers" class="content-section">
+        <h2>정답 입력</h2>
+        <div class="subject-tabs">
+            <button id="tab-korean" class="active-sub" onclick="showSubject('korean')">국어</button>
+            <button id="tab-calc" onclick="showSubject('calc')">미적분</button>
+            <button id="tab-stat" onclick="showSubject('stat')">확률과 통계</button>
         </div>
-        `;
-    }
 
-    questions.innerHTML += html;
-}
+        <div id="subject-content" class="answer-grid">
+            </div>
+    </div>
 
-/* ==========================
-   채점
-========================== */
+    <div id="cutoffs" class="content-section">
+        <h2>예상 등급컷</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>등급</th>
+                    <th>국어</th>
+                    <th>미적분</th>
+                    <th>확률과 통계</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1등급</td><td>92</td><td>88</td><td>90</td></tr>
+                <tr><td>2등급</td><td>85</td><td>80</td><td>81</td></tr>
+                <tr><td>3등급</td><td>77</td><td>71</td><td>73</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-function gradeExam(){
-
-    const subject =
-    document.querySelector(
-    'input[name="subject"]:checked'
-    ).value;
-
-    const answers =
-    subject==="calc"
-    ? calcAnswers
-    : statAnswers;
-
-    let score = 0;
-    let wrongQuestions = [];
-
-    for(let i=1;i<=30;i++){
-
-        let userAnswer = null;
-
-        if(
-            (i>=16 && i<=22) ||
-            i===29 ||
-            i===30
-        ){
-
-            const input =
-            document.getElementById(`q${i}`);
-
-            if(input.value !== ""){
-                userAnswer = Number(input.value);
-            }
-
-        }else{
-
-            const checked =
-            document.querySelector(
-            `input[name="q${i}"]:checked`
-            );
-
-            if(checked){
-                userAnswer = Number(checked.value);
+    <script>
+        // 탭 전환 기능
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            // 정답확인 탭을 누르면 기본으로 국어 화면 표시
+            if(sectionId === 'answers') {
+                showSubject('korean');
             }
         }
 
-        if(userAnswer === answers[i-1]){
-            score++;
-        }else{
-            wrongQuestions.push(i);
+        // 과목별 답안지 생성 기능
+        function showSubject(subject) {
+            // 서브 탭 색상 변경
+            document.querySelectorAll('.subject-tabs button').forEach(btn => btn.classList.remove('active-sub'));
+            if(subject === 'korean') document.getElementById('tab-korean').classList.add('active-sub');
+            if(subject === 'calc') document.getElementById('tab-calc').classList.add('active-sub');
+            if(subject === 'stat') document.getElementById('tab-stat').classList.add('active-sub');
+
+            const container = document.getElementById('subject-content');
+            let html = '';
+
+            if (subject === 'korean') {
+                // 국어 45문제 (전부 객관식)
+                for (let i = 1; i <= 45; i++) {
+                    html += createObjectiveQuestion(i, 'kor');
+                }
+            } else {
+                // 미적분, 확률과 통계 30문제 (16~22, 29, 30 주관식)
+                const subjectiveNums = [16, 17, 18, 19, 20, 21, 22, 29, 30];
+                for (let i = 1; i <= 30; i++) {
+                    if (subjectiveNums.includes(i)) {
+                        html += createSubjectiveQuestion(i, subject);
+                    } else {
+                        html += createObjectiveQuestion(i, subject);
+                    }
+                }
+            }
+            container.innerHTML = html;
         }
-    }
 
-    let resultText =
-    `점수 : ${score} / 30<br><br>`;
+        // 객관식 HTML 생성
+        function createObjectiveQuestion(num, prefix) {
+            let options = '';
+            for(let opt=1; opt<=5; opt++) {
+                options += `<label><input type="radio" name="${prefix}_q${num}" value="${opt}"> ${opt}</label>`;
+            }
+            return `
+                <div class="question-item">
+                    <strong>${num}번</strong>
+                    <div class="options">${options}</div>
+                </div>
+            `;
+        }
 
-    if(wrongQuestions.length === 0){
-
-        resultText +=
-        "🎉 전 문항 정답!";
-
-    }else{
-
-        resultText +=
-        ` 틀린 번호 : ${wrongQuestions.join(", ")}`;
-    }
-
-    document.getElementById("result")
-    .innerHTML = resultText;
-}
-function showAnswers(){
-
-    const answerSheet =
-    document.getElementById("answerSheet");
-
-    // 이미 열려 있으면 닫기
-    if(answerSheet.innerHTML !== ""){
-
-        answerSheet.innerHTML = "";
-        return;
-    }
-
-    const subject =
-    document.querySelector(
-    'input[name="subject"]:checked'
-    ).value;
-
-    const answers =
-    subject === "calc"
-    ? calcAnswers
-    : statAnswers;
-
-    let html = "<h3>정답표</h3>";
-
-    for(let i=1;i<=30;i++){
-
-        html += `
-        ${i}번 : ${answers[i-1]}<br>
-        `;
-    }
-
-    answerSheet.innerHTML = html;
-}
-</script>
-
+        // 주관식 HTML 생성
+        function createSubjectiveQuestion(num, prefix) {
+            return `
+                <div class="question-item">
+                    <strong>${num}번 (주관식)</strong><br>
+                    <input type="text" placeholder="정답 입력" name="${prefix}_q${num}">
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
