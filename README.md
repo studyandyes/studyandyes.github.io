@@ -1,4 +1,3 @@
-
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -191,15 +190,16 @@
         </ul>
     </div>
 
-    <<div id="answers" class="content-section">
+    <div id="answers" class="content-section">
         <h2>정답 입력</h2>
         <div class="subject-tabs">
             <button id="tab-korean" class="active-sub" onclick="showSubject('korean')">국어</button>
             <button id="tab-calc" onclick="showSubject('calc')">미적분</button>
             <button id="tab-stat" onclick="showSubject('stat')">확률과 통계</button>
-            <button id="tab-geo" onclick="showSubject('geo')">기하</button> </div>
+        </div>
 
-        <div id="subject-content" class="answer-grid"></div>
+        <div id="subject-content" class="answer-grid">
+            </div>
 
         <div class="submit-btn-container">
             <button class="submit-btn" onclick="gradeAnswers()">채점하기</button>
@@ -215,7 +215,6 @@
                     <th>국어</th>
                     <th>미적분</th>
                     <th>확률과 통계</th>
-                    <th>기하</th>
                 </tr>
             </thead>
             <tbody>
@@ -243,8 +242,6 @@
             stat: {
                 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "12", 30: "120"
             }
-            geo: {
-                1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4"
         };
 
         let currentSubject = 'korean'; 
@@ -268,7 +265,6 @@
             if(subject === 'korean') document.getElementById('tab-korean').classList.add('active-sub');
             if(subject === 'calc') document.getElementById('tab-calc').classList.add('active-sub');
             if(subject === 'stat') document.getElementById('tab-stat').classList.add('active-sub');
-            if(subject === 'geo') document.getElementById('tab-geo').classList.add('active-sub');
 
             const container = document.getElementById('subject-content');
             let html = '';
@@ -375,7 +371,7 @@
                 // 국어 결과
                 alert(`[${subjectName} 채점 결과]\n- 푼 문제 수: ${answeredCount} / ${qCount}\n- 맞힌 문제 수: ${correctCount}개\n\n 틀린 문제:\n${wrongListStr}`);
             } else {
-                // 수학(미적분, 기하, 확통) 결과
+                // 수학(미적분, 확통) 결과
                 alert(`[${subjectName} 채점 결과]\n- 푼 문제 수: ${answeredCount} / ${qCount}\n\n 틀린 문제:\n${wrongListStr}\n\n 최종 점수: ${totalScore}점 / 100점`);
             }
         }
