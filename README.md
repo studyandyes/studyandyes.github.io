@@ -330,6 +330,7 @@
                 <div class="examiner-desc">
                     - 현) 양정고등학교 학생<br>
                     - 현) YES 모의고사 수학출제위원
+                    - 현) YES 모의고사 서버 관리자
                 </div>
             </div>
         </div>
