@@ -196,6 +196,7 @@
             <button id="tab-korean" class="active-sub" onclick="showSubject('korean')">국어</button>
             <button id="tab-calc" onclick="showSubject('calc')">미적분</button>
             <button id="tab-stat" onclick="showSubject('stat')">확률과 통계</button>
+            <button id="tab-geo" onclick="showSubject('geo')">기하</button>
         </div>
 
         <div id="subject-content" class="answer-grid">
@@ -242,6 +243,17 @@
             stat: {
                 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "12", 30: "120"
             }
+            geo: {
+    1: "2", 2: "4", 3: "1", 4: "5",
+    5: "3", 6: "2", 7: "4", 8: "1",
+    9: "5", 10: "2", 11: "3", 12: "1",
+    13: "4", 14: "2", 15: "5",
+    16: "12", 17: "8", 18: "15", 19: "21",
+    20: "7", 21: "18", 22: "25",
+    23: "3", 24: "2", 25: "4", 26: "1",
+    27: "5", 28: "2",
+    29: "64", 30: "128"
+            }
         };
 
         let currentSubject = 'korean'; 
@@ -265,7 +277,8 @@
             if(subject === 'korean') document.getElementById('tab-korean').classList.add('active-sub');
             if(subject === 'calc') document.getElementById('tab-calc').classList.add('active-sub');
             if(subject === 'stat') document.getElementById('tab-stat').classList.add('active-sub');
-
+            if(subject === 'geo') document.getElementById('tab-geo').classList.add('active-sub');
+             
             const container = document.getElementById('subject-content');
             let html = '';
             let prefix = subject === 'korean' ? 'kor' : subject;
@@ -364,7 +377,15 @@
             }
 
             // 결과 안내창 띄우기
-            let subjectName = currentSubject === 'korean' ? '국어' : (currentSubject === 'calc' ? '미적분' : '확률과 통계');
+            let subjectName =
+    currentSubject === 'korean'
+    ? '국어'
+    : currentSubject === 'calc'
+    ? '미적분'
+    : currentSubject === 'stat'
+    ? '확률과 통계'
+    : '기하';
+
             let wrongListStr = wrongQuestions.length > 0 ? wrongQuestions.join(', ') + '번' : '전원 정답!';
 
             if (currentSubject === 'korean') {
