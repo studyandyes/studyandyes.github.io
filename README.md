@@ -177,7 +177,7 @@
 
     <div id="main" class="content-section active">
         <div class="main-image-container">
-            <img src="IMG_6273.jpg" alt="메인 페이지 이미지">
+            <img src="IMG_6272.png" alt="메인 페이지 이미지">
         </div>
     </div>
 
