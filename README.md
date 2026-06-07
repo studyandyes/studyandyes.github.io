@@ -329,7 +329,7 @@
                 <div class="examiner-role">수학 영역 대표 출제 (전체)</div>
                 <div class="examiner-desc">
                     - 현) 양정고등학교 학생<br>
-                    - 현) YES 모의고사 수학출제위원
+                    - 현) YES 모의고사 수학출제위원<br>
                     - 현) YES 모의고사 서버 관리자
                 </div>
             </div>
