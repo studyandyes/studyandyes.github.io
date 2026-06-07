@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -5,15 +6,21 @@
     <title>Study Portal</title>
     <style>
         :root {
-            --primary-color: #007bff;
-            --border-color: #ddd;
-            --bg-color: #f8f9fa;
+        
+            --primary-color: #1e40af; 
+            
+            --border-color: #e5e7eb; 
+            
+            --bg-color: #fdfbf6; 
         }
         body {
             font-family: 'Malgun Gothic', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            
+            background-color: #fafaf8;
+            
+            color: #1f2937; 
         }
         
         /* 상단 네비게이션 바 */
@@ -26,6 +33,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         nav div {
             cursor: pointer;
@@ -55,7 +63,8 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            /* 부드러운 그림자 */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
         }
 
         /* 다운로드 화면 */
@@ -82,6 +91,12 @@
             border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
+            text-decoration: none; /* a 태그 기본 밑줄 제거 */
+            display: inline-block; /* 레이아웃 정렬 보장 */
+        }
+        .download-btn:hover {
+            /* 호버 시 약간 더 어둡게 */
+            background-color: #111827; 
         }
 
         /* 정답 확인 화면 */
@@ -164,8 +179,8 @@
             color: white;
         }
     </style>
-     </head>
-     <body>
+</head>
+<body>
 
     <nav>
         <div onclick="showSection('main')">홈</div>
@@ -185,7 +200,8 @@
         <ul class="file-list">
             <li>
                 <span>제1회 YES모의고사.pdf</span>
-                <button class="download-btn">다운로드</button>
+                <!-- 실제 다운로드가 작동하도록 a 태그와 download 속성으로 변경했습니다. -->
+                <a href="제1회 YES모의고사.pdf" download="제1회 YES모의고사.pdf" class="download-btn">다운로드</a>
             </li>
         </ul>
     </div>
@@ -200,7 +216,7 @@
         </div>
 
         <div id="subject-content" class="answer-grid">
-            </div>
+        </div>
 
         <div class="submit-btn-container">
             <button class="submit-btn" onclick="gradeAnswers()">채점하기</button>
@@ -228,12 +244,6 @@
     </div>
 
     <script>
-        // =======================================================
-        // [정답 설정 공간]
-        // 채점을 위해 각 과목의 실제 정답을 아래에 쉼표(,)로 구분하여 입력하세요.
-        // 현재 테스트를 위해 1번부터 몇 문제만 임의로 적혀있습니다. 
-        // 실제 사용할 때는 모든 문제의 번호와 정답을 기입해야 정상적으로 100점 만점이 계산됩니다.
-        // =======================================================
         const correctAnswers = {
             korean: {
                 1: "1", 2: "3", 3: "5", 4: "2" 
@@ -245,20 +255,19 @@
                 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 30: "120"
             },
             geo: {
-    1: "2", 2: "3", 3: "5", 4: "5",
-    5: "5", 6: "5", 7: "1", 8: "3",
-    9: "2", 10: "1", 11: "4", 12: "2",
-    13: "4", 14: "1", 15: "4",
-    16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139",
-    23: "3", 24: "2", 25: "4", 26: "1",
-    27: "5", 28: "2",
-    29: "64", 30: "128"
+                1: "2", 2: "3", 3: "5", 4: "5",
+                5: "5", 6: "5", 7: "1", 8: "3",
+                9: "2", 10: "1", 11: "4", 12: "2",
+                13: "4", 14: "1", 15: "4",
+                16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139",
+                23: "3", 24: "2", 25: "4", 26: "1",
+                27: "5", 28: "2",
+                29: "64", 30: "128"
             }
         };
 
         let currentSubject = 'korean'; 
 
-        // 탭 전환 기능
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.classList.remove('active'));
@@ -269,7 +278,6 @@
             }
         }
 
-        // 과목별 답안지 생성
         function showSubject(subject) {
             currentSubject = subject; 
 
@@ -322,7 +330,6 @@
             `;
         }
 
-        // 수학 과목 배점 계산 함수
         function getMathScore(qNum) {
             if (qNum <= 2) return 2;
             if (qNum <= 8) return 3;
@@ -335,7 +342,6 @@
             return 0;
         }
 
-        // 채점 및 결과 출력 기능
         function gradeAnswers() {
             let qCount = currentSubject === 'korean' ? 45 : 30;
             let prefix = currentSubject === 'korean' ? 'kor' : currentSubject;
@@ -343,7 +349,7 @@
             let correctCount = 0;
             let answeredCount = 0;
             let totalScore = 0;
-            let wrongQuestions = []; // 틀린 문제 번호를 저장할 배열
+            let wrongQuestions = [];
 
             for (let i = 1; i <= qCount; i++) {
                 let userAnswer = "";
@@ -363,36 +369,32 @@
                     }
                 }
 
-                // 등록된 정답 가져오기 (정답이 등록되지 않은 문항도 오답으로 처리됨)
                 let realAnswer = correctAnswers[currentSubject][i];
                 
                 if (realAnswer && userAnswer === String(realAnswer)) {
                     correctCount++;
                     if (currentSubject !== 'korean') {
-                        totalScore += getMathScore(i); // 수학일 경우 점수 합산
+                        totalScore += getMathScore(i);
                     }
                 } else {
-                    wrongQuestions.push(i); // 틀리거나 풀지 않은 문제는 오답 배열에 추가
+                    wrongQuestions.push(i);
                 }
             }
 
-            // 결과 안내창 띄우기
             let subjectName =
-    currentSubject === 'korean'
-    ? '국어'
-    : currentSubject === 'calc'
-    ? '미적분'
-    : currentSubject === 'stat'
-    ? '확률과 통계'
-    : '기하';
+                currentSubject === 'korean'
+                ? '국어'
+                : currentSubject === 'calc'
+                ? '미적분'
+                : currentSubject === 'stat'
+                ? '확률과 통계'
+                : '기하';
 
             let wrongListStr = wrongQuestions.length > 0 ? wrongQuestions.join(', ') + '번' : '전원 정답!';
 
             if (currentSubject === 'korean') {
-                // 국어 결과
                 alert(`[${subjectName} 채점 결과]\n- 푼 문제 수: ${answeredCount} / ${qCount}\n- 맞힌 문제 수: ${correctCount}개\n\n 틀린 문제:\n${wrongListStr}`);
             } else {
-                // 수학(미적분, 확통) 결과
                 alert(`[${subjectName} 채점 결과]\n- 푼 문제 수: ${answeredCount} / ${qCount}\n\n 틀린 문제:\n${wrongListStr}\n\n 최종 점수: ${totalScore}점 / 100점`);
             }
         }
