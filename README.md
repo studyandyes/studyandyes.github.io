@@ -6,11 +6,8 @@
     <title>Study Portal</title>
     <style>
         :root {
-            /* 세련된 학습 분위기를 위한 차분한 네이비 블루 */
             --primary-color: #1e40af; 
-            /* 더 부드러운 그레이 */
             --border-color: #e5e7eb; 
-            /* 따뜻한 분위기를 위한 웜 베이지 */
             --bg-color: #fdfbf6; 
         }
         body {
