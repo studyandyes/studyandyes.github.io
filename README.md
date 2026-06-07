@@ -6,20 +6,20 @@
     <title>Study Portal</title>
     <style>
         :root {
-        
+            /* 세련된 학습 분위기를 위한 차분한 네이비 블루 */
             --primary-color: #1e40af; 
-            
+            /* 더 부드러운 그레이 */
             --border-color: #e5e7eb; 
-            
+            /* 따뜻한 분위기를 위한 웜 베이지 */
             --bg-color: #fdfbf6; 
         }
         body {
             font-family: 'Malgun Gothic', sans-serif;
             margin: 0;
             padding: 0;
-            
+            /* 따뜻하고 편안한 연한 웜 그레이 메인 배경 */
             background-color: #fafaf8;
-            
+            /* 더 부드러운 텍스트 색상 */
             color: #1f2937; 
         }
         
@@ -91,11 +91,10 @@
             border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
-            text-decoration: none; /* a 태그 기본 밑줄 제거 */
-            display: inline-block; /* 레이아웃 정렬 보장 */
+            text-decoration: none;
+            display: inline-block;
         }
         .download-btn:hover {
-            /* 호버 시 약간 더 어둡게 */
             background-color: #111827; 
         }
 
@@ -178,6 +177,48 @@
             background-color: var(--primary-color);
             color: white;
         }
+
+        /*  출제진 화면 */
+        .examiner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .examiner-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+        .examiner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .examiner-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .examiner-role {
+            font-size: 14px;
+            color: #4b5563;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .examiner-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+            text-align: left;
+            word-break: keep-all;
+        }
     </style>
 </head>
 <body>
@@ -187,6 +228,7 @@
         <div onclick="showSection('download')">문제 다운로드</div>
         <div onclick="showSection('answers')">정답확인</div>
         <div onclick="showSection('cutoffs')">등급컷확인</div>
+        <div onclick="showSection('examiners')">출제진</div>
     </nav>
 
     <div id="main" class="content-section active">
@@ -200,7 +242,6 @@
         <ul class="file-list">
             <li>
                 <span>제1회 YES모의고사.pdf</span>
-                <!-- 실제 다운로드가 작동하도록 a 태그와 download 속성으로 변경했습니다. -->
                 <a href="제1회 YES모의고사.pdf" download="제1회 YES모의고사.pdf" class="download-btn">다운로드</a>
             </li>
         </ul>
@@ -243,27 +284,63 @@
         </table>
     </div>
 
+    <div id="examiners" class="content-section">
+        <h2>YES 모의고사 출제진</h2>
+        <p style="color: #6b7280; font-size: 14px; margin-bottom: 20px;">
+           양정의 출제진들이 모였다
+        </p>
+        <div class="examiner-grid">
+            <div class="examiner-card">
+                <div class="examiner-name">김호석, 장환진, 이승헌 </div>
+                <div class="examiner-role">국어 영역 대표 출제</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 국어출제위원
+                </div>
+            </div>
+            
+            <div class="examiner-card">
+                <div class="examiner-name">김성엽</div>
+                <div class="examiner-role">수학 영역 공동 출제 (공통/미적분/확통)</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 수학출제위원
+                </div>
+            </div>
+
+            <div class="examiner-card">
+                <div class="examiner-name">신재원</div>
+                <div class="examiner-role">수학 영역 출제 (확통)</div>
+                <div class="examiner-desc">
+                    - OO대학교 수학과 석사<br>
+                    - 현) YES모의고사 수학출제위원
+                </div>
+            </div>
+           <div class="examiner-card">
+                <div class="examiner-name">윤예찬</div>
+                <div class="examiner-role">수학 영역 공동 출제 (공통/미적분/기하)</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 수학출제위원
+                </div>
+            </div>
+            <div class="examiner-card">
+                <div class="examiner-name">이성준</div>
+                <div class="examiner-role">수학 영역 대표 출제 (전체)</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 수학출제위원
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const correctAnswers = {
-            korean: {
-                1: "1", 2: "3", 3: "5", 4: "2" 
-            },
-            calc: {
-                1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 30: "250"
-            },
-            stat: {
-                1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 30: "120"
-            },
-            geo: {
-                1: "2", 2: "3", 3: "5", 4: "5",
-                5: "5", 6: "5", 7: "1", 8: "3",
-                9: "2", 10: "1", 11: "4", 12: "2",
-                13: "4", 14: "1", 15: "4",
-                16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139",
-                23: "3", 24: "2", 25: "4", 26: "1",
-                27: "5", 28: "2",
-                29: "64", 30: "128"
-            }
+            korean: { 1: "1", 2: "3", 3: "5", 4: "2" },
+            calc: { 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 30: "250" },
+            stat: { 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 30: "120" },
+            geo: { 1: "2", 2: "3", 3: "5", 4: "5", 5: "5", 6: "5", 7: "1", 8: "3", 9: "2", 10: "1", 11: "4", 12: "2", 13: "4", 14: "1", 15: "4", 16: "11", 17: "6", 18: "13", 19: "3", 20: "29", 21: "20", 22: "139", 23: "3", 24: "2", 25: "4", 26: "1", 27: "5", 28: "2", 29: "64", 30: "128" }
         };
 
         let currentSubject = 'korean'; 
@@ -381,15 +458,7 @@
                 }
             }
 
-            let subjectName =
-                currentSubject === 'korean'
-                ? '국어'
-                : currentSubject === 'calc'
-                ? '미적분'
-                : currentSubject === 'stat'
-                ? '확률과 통계'
-                : '기하';
-
+            let subjectName = currentSubject === 'korean' ? '국어' : currentSubject === 'calc' ? '미적분' : currentSubject === 'stat' ? '확률과 통계' : '기하';
             let wrongListStr = wrongQuestions.length > 0 ? wrongQuestions.join(', ') + '번' : '전원 정답!';
 
             if (currentSubject === 'korean') {
