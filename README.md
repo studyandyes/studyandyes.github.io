@@ -216,6 +216,7 @@
                     <th>국어</th>
                     <th>미적분</th>
                     <th>확률과 통계</th>
+                    <th>기하</th>
                 </tr>
             </thead>
             <tbody>
