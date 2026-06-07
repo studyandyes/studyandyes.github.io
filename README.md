@@ -312,7 +312,7 @@
                 <div class="examiner-name">신재원</div>
                 <div class="examiner-role">수학 영역 출제 (확통)</div>
                 <div class="examiner-desc">
-                    - OO대학교 수학과 석사<br>
+                    - 현) 양정고등학교 학생<br>
                     - 현) YES모의고사 수학출제위원
                 </div>
             </div>
