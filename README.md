@@ -235,8 +235,8 @@
         <h2>자료실</h2>
         <ul class="file-list">
             <li>
-                <span>제1회 YES모의고사.pdf</span>
-                <a href="제1회 YES모의고사.pdf" download="제1회 YES모의고사.pdf" class="download-btn">다운로드</a>
+                <span>제1회 YES모의고사 수학.pdf</span>
+                <a href="제1회 YES모의고사 수학.pdf" download="제1회 YES모의고사 수학.pdf" class="download-btn">다운로드</a>
             </li>
         </ul>
     </div>
@@ -285,8 +285,24 @@
         </p>
         <div class="examiner-grid">
             <div class="examiner-card">
-                <div class="examiner-name">김호석, 장환진, 이승헌 </div>
-                <div class="examiner-role">국어 영역 대표 출제</div>
+                <div class="examiner-name">김호석</div>
+                <div class="examiner-role">국어 영역 대표 출제 (독서)</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 국어출제위원
+                </div>
+            </div>
+            
+            <div class="examiner-name">이승헌</div>
+                <div class="examiner-role">국어 영역 출제 (문학)</div>
+                <div class="examiner-desc">
+                    - 현) 양정고등학교 학생<br>
+                    - 현) YES 모의고사 국어출제위원
+                </div>
+            </div>
+            
+            <div class="examiner-name">장환진</div>
+                <div class="examiner-role">국어 영역 출제(언어와 매체)</div>
                 <div class="examiner-desc">
                     - 현) 양정고등학교 학생<br>
                     - 현) YES 모의고사 국어출제위원
