@@ -293,7 +293,7 @@
                 </div>
             </div>
 
-            <div class="examiner-card">
+         <div class="examiner-card">
             <div class="examiner-name">이승헌</div>
                 <div class="examiner-role">국어 영역 출제 (문학)</div>
                 <div class="examiner-desc">
@@ -302,7 +302,7 @@
                 </div>
             </div>
 
-            <div class="examiner-card">
+          <div class="examiner-card">
             <div class="examiner-name">장환진</div>
                 <div class="examiner-role">국어 영역 출제(언어와 매체)</div>
                 <div class="examiner-desc">
@@ -311,7 +311,7 @@
                 </div>
             </div>
             
-            <div class="examiner-card">
+           <div class="examiner-card">
                 <div class="examiner-name">김성엽</div>
                 <div class="examiner-role">수학 영역 공동 출제 (공통/미적분/확통)</div>
                 <div class="examiner-desc">
