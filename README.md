@@ -292,7 +292,8 @@
                     - 현) YES 모의고사 국어출제위원
                 </div>
             </div>
-            
+
+            <div class="examiner-card">
             <div class="examiner-name">이승헌</div>
                 <div class="examiner-role">국어 영역 출제 (문학)</div>
                 <div class="examiner-desc">
@@ -300,7 +301,8 @@
                     - 현) YES 모의고사 국어출제위원
                 </div>
             </div>
-            
+
+            <div class="examiner-card">
             <div class="examiner-name">장환진</div>
                 <div class="examiner-role">국어 영역 출제(언어와 매체)</div>
                 <div class="examiner-desc">
