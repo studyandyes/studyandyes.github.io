@@ -235,9 +235,14 @@
         <h2>자료실</h2>
         <ul class="file-list">
             <li>
-                <span>제1회 YES모의고사 수학.pdf</span>
+                <span>제1회 YES모의고사 수학(미공개).pdf</span>
                 <a href="제1회 YES모의고사 수학.pdf" download="제1회 YES모의고사 수학.pdf" class="download-btn">다운로드</a>
             </li>
+          
+            <li>
+				<span>제1회 YES모의고사 수학(확률과 통계/test).pdf</span>
+				<a href="제1회 YES모의고사 수학 (확률과 통계).pdf" download="제1회 YES모의고사 수학 (확률과 통계).pdf" class="download-btn">다운로드</a>
+			</li>
         </ul>
     </div>
 
