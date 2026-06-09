@@ -276,9 +276,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1등급</td><td></td><td></td><td></td><td></td></tr>
-                <tr><td>2등급</td><td></td><td></td><td></td><td></td></tr>
-                <tr><td>3등급</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>1등급</td><td></td><td></td><td>88</td><td></td></tr>
+                <tr><td>2등급</td><td></td><td></td><td>78</td><td></td></tr>
+                <tr><td>3등급</td><td></td><td></td><td>70</td><td></td></tr>
             </tbody>
         </table>
     </div>
