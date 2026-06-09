@@ -240,7 +240,7 @@
             </li>
           
             <li>
-				<span>제 1회 YES모의고사 수학(확률과 통계).pdf</span>
+				<span>제 1회 YES모의고사 수학(확률과 통계/test).pdf</span>
 				<a href="YES_EXAM_STAT.zip" download="제 1회 YES모의고사 수학(확률과 통계).zip" class="download-btn">다운로드</a>
 			</li>
         </ul>
