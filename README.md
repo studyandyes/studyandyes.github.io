@@ -236,7 +236,7 @@
         <ul class="file-list">
             <li>
                 <span>제1회 YES모의고사 수학(미공개).pdf</span>
-                <a href="제1회 YES모의고사 수학.pdf" download="제1회 YES모의고사 수학.pdf" class="download-btn">다운로드</a>
+                <a href="YES.EXAM.F_01.zip" download="YES.EXAM.F_01.zip" class="download-btn">다운로드</a>
             </li>
         </ul>
     </div>
