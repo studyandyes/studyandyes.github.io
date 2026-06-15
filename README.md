@@ -238,6 +238,10 @@
                 <span>제1회 YES모의고사 수학(미공개).pdf</span>
                 <a href="YES.EXAM.F_01.zip" download="YES.EXAM.F_01.zip" class="download-btn">다운로드</a>
             </li>
+            <li>
+                <span>제1회 YES모의고사 수학 정답지</span>
+                <a herf="YES.EXAM.FA.pdf" download="YES.EXAM.FA.pdf" class="download-btn">다운로드        </a>
+            </li>
         </ul>
     </div>
 
