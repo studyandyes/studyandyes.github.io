@@ -235,7 +235,7 @@
         <h2>자료실</h2>
         <ul class="file-list">
             <li>
-                <span>제1회 YES모의고사 수학(미공개).pdf</span>
+                <span>제1회 YES모의고사 수학.pdf</span>
                 <a href="YES.EXAM.F_01.zip" download="YES.EXAM.F_01.zip" class="download-btn">다운로드</a>
             </li>
         </ul>
@@ -271,9 +271,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1등급</td><td></td><td></td><td>88</td><td>86</td></tr>
-                <tr><td>2등급</td><td></td><td></td><td>78</td><td>81</td></tr>
-                <tr><td>3등급</td><td></td><td></td><td>70</td><td>74</td></tr>
+                <tr><td>1등급</td><td></td><td>85</td><td>88</td><td>86</td></tr>
+                <tr><td>2등급</td><td></td><td>78</td><td>78</td><td>81</td></tr>
+                <tr><td>3등급</td><td></td><td>70</td><td>70</td><td>74</td></tr>
             </tbody>
         </table>
     </div>
