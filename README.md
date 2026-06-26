@@ -213,17 +213,58 @@
             text-align: left;
             word-break: keep-all;
         }
+        /* 이벤트 */
+         .event-card{
+              background:white;
+              border:1px solid var(--border-color);
+              border-left:6px solid var(--primary-color);
+              border-radius:8px;
+              padding:20px;
+              margin-top:20px;
+              box-shadow:0 2px 6px rgba(0,0,0,0.08);
+         }
+         .event-title{
+               font-size:22px;
+               font-weight:bold;
+               color:var(--primary-color);
+               margin-bottom:8px;
+         }
+          .event-date{
+               color:#6b7280;
+               font-size:14px;
+               margin-bottom:15px;
+         }
+          .event-content{
+             line-height:1.8;
+             font-size:15px;
+       }
     </style>
 </head>
 <body>
 
     <nav>
+        <div onclick="showSection('event')">이벤트</div>
         <div onclick="showSection('main')">홈</div>
         <div onclick="showSection('download')">문제 다운로드</div>
         <div onclick="showSection('answers')">정답확인</div>
         <div onclick="showSection('cutoffs')">등급컷확인</div>
         <div onclick="showSection('examiners')">출제진</div>
     </nav>
+
+        <div id="event" class="content-section">
+    <h2>이벤트</h2>
+
+    <div class="event-card">
+        <div class="event-title">YIB 개최</div>
+        <div class="event-date">2026.XX.XX</div>
+        <div class="event-content">
+            YES 모의고사 출제진이 주최하는
+            <strong>YIB</strong>가 개최됩니다.
+            <br><br>
+            자세한 일정 및 참가 방법은 추후 공지될 예정입니다.
+        </div>
+    </div>
+    </div>
 
     <div id="main" class="content-section active">
         <div class="main-image-container">
