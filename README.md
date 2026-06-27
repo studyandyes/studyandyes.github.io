@@ -213,7 +213,7 @@
             text-align: left;
             word-break: keep-all;
         }
-        /* 이벤트 */
+        /* 공지 */
          .event-card{
               background:white;
               border:1px solid var(--border-color);
@@ -243,7 +243,7 @@
 <body>
 
     <nav>
-        <div onclick="showSection('event')">이벤트</div>
+        <div onclick="showSection('event')">공지</div>
         <div onclick="showSection('main')">홈</div>
         <div onclick="showSection('download')">문제 다운로드</div>
         <div onclick="showSection('answers')">정답확인</div>
