@@ -252,7 +252,7 @@
     </nav>
 
         <div id="event" class="content-section">
-    <h2>이벤트</h2>
+    <h2>공지사항</h2>
 
     <div class="event-card">
         <div class="event-title">YIB 개최</div>
