@@ -275,6 +275,14 @@
     <div id="download" class="content-section">
         <h2>자료실</h2>
         <ul class="file-list">
+         <li>
+                <span>제1회 YES모의고사 수학.pdf</span>
+                <a href="YES.EXAM.F.01.zip" download="YES.EXAM.F.01.zip" class="download-btn">다운로드</a>
+            </li>
+          <li>
+                <span>제1회 YES모의고사 수학 정답표.pdf</span>
+                <a href="YES.EXAM.F.A.pdf" download="YES.EXAM.F.A.pdf" class="download-btn">다운로드</a>
+            </li>
         </ul>
     </div>
 
