@@ -255,6 +255,15 @@
     <h2>공지사항</h2>
 
     <div class="event-card">
+        <div class="event-title">YES모의고사 제 1회 공지사항</div>
+        <div class="event-date">2026.07.10</div>
+        <div class="event-content">
+            질문은 아래 gmail로 해주시길 바랍니다.
+            <br><br>
+            ggddong@gmail.com
+        </div>
+
+    <div class="event-card">
         <div class="event-title">YIB 개최</div>
         <div class="event-date">2026.XX.XX</div>
         <div class="event-content">
